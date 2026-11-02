@@ -10,7 +10,7 @@ app.use(cors());
 app.use(express.json());
 
 app.get("/", (req, res) => {
-    res.send("Backend CRUD API is running!");
+  res.send("Backend CRUD API is running!");
 });
 
 app.use("/api/products", productRoutes);
