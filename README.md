@@ -1,79 +1,73 @@
-<<<<<<< HEAD
 # Backend CRUD API
 
-A simple REST API built using Node.js, Express.js, and MongoDB to perform CRUD (Create, Read, Update, and Delete) operations on products.
+A REST API built using Node.js, Express.js, and MongoDB to manage products and posts, with user registration, login, and JWT-based authentication.
 
 ## Technologies Used
 
-=======
-# Backend CRUD Assignment
-
-A REST API built using Node.js, Express.js, and MongoDB for managing products.
-
-## Technologies Used
->>>>>>> cae2f2b (Complete backend CRUD assignment)
 - Node.js
 - Express.js
 - MongoDB Atlas
 - Mongoose
+- Express
+- JSON Web Token (JWT)
+- bcrypt
 - Postman
-<<<<<<< HEAD
 - Git and GitHub
 
 ## Features
 
+### Product Management
 - Create a new product
 - Retrieve all products
 - Retrieve a product by ID
 - Update product details
 - Delete a product
 - Store product data in MongoDB
-- Automatically maintain creation and update timestamps
-=======
 
-## Features
-- Create a product
-- Retrieve all products
-- Retrieve a product by ID
-- Update a product
-- Delete a product
->>>>>>> cae2f2b (Complete backend CRUD assignment)
+### User Authentication
+- Register a new user
+- Login with email and password
+- Secure password hashing using bcrypt
+- JWT-based authentication
+- Protect routes using authentication middleware
+
+### Post Management
+- Create a new post (authentication required)
+- Retrieve all posts
+- Retrieve a post by ID
+- Update your own posts
+- Delete your own posts
+- Display post author details
 
 ## Project Structure
 
 ```text
 backend-crud-assignment/
 ├── src/
-<<<<<<< HEAD
-=======
-│   ├── config/
-│   │   └── database.js
->>>>>>> cae2f2b (Complete backend CRUD assignment)
 │   ├── controllers/
-│   │   └── product.controller.js
+│   │   ├── product.controller.js
+│   │   ├── user.controller.js
+│   │   └── post.controller.js
+│   ├── middleware/
+│   │   └── auth.middleware.js
 │   ├── models/
-│   │   └── product.model.js
+│   │   ├── product.model.js
+│   │   ├── user.model.js
+│   │   └── post.model.js
 │   ├── routes/
-│   │   └── product.routes.js
+│   │   ├── product.routes.js
+│   │   ├── user.routes.js
+│   │   └── post.routes.js
 │   ├── app.js
 │   └── index.js
-<<<<<<< HEAD
 ├── .env
 ├── .gitignore
 ├── package.json
 └── package-lock.json
-=======
-├── postman/
-├── .env.example
-├── .gitignore
-├── package.json
-└── README.md
->>>>>>> cae2f2b (Complete backend CRUD assignment)
 ```
 
 ## Installation
 
-<<<<<<< HEAD
 ### 1. Clone the repository
 
 ```bash
@@ -99,9 +93,12 @@ Create a `.env` file in the project root and add:
 ```env
 PORT=5000
 MONGODB_URI=your_mongodb_connection_string
+JWT_SECRET=your_secret_key
 ```
 
-Replace `your_mongodb_connection_string` with your own MongoDB Atlas connection string. Never share or upload your actual `.env` file.
+Replace the placeholder values with your own MongoDB Atlas connection string and a secure JWT secret.
+
+**Important:** Never upload or share your actual `.env` file.
 
 ### 5. Start the server
 
@@ -115,38 +112,10 @@ The server runs on port `5000` after successfully connecting to MongoDB.
 
 ## API Endpoints
 
-Base URL: `http://localhost:5000/api/products`
+Base URL: `http://localhost:5000`
 
-=======
-1. Clone the repository:
+### Products
 
-   ```bash
-   git clone https://github.com/divyanshi2109/backend-crud-assignment.git
-   ```
-
-2. Open the project folder:
-
-   ```bash
-   cd backend-crud-assignment
-   ```
-
-3. Install dependencies:
-
-   ```bash
-   npm install
-   ```
-
-4. Create a `.env` file using `.env.example` as a guide. Add your own MongoDB connection string.
-
-5. Start the development server:
-
-   ```bash
-   npm run dev
-   ```
-
-## API Endpoints
-
->>>>>>> cae2f2b (Complete backend CRUD assignment)
 | Method | Endpoint | Description |
 |---|---|---|
 | POST | `/api/products` | Create a product |
@@ -155,7 +124,35 @@ Base URL: `http://localhost:5000/api/products`
 | PUT | `/api/products/:id` | Update a product |
 | DELETE | `/api/products/:id` | Delete a product |
 
-<<<<<<< HEAD
+### User Authentication
+
+| Method | Endpoint | Description |
+|---|---|---|
+| POST | `/api/users/register` | Register a new user |
+| POST | `/api/users/login` | Login an existing user |
+
+### Posts
+
+| Method | Endpoint | Description |
+|---|---|---|
+| POST | `/api/posts` | Create a post (authentication required) |
+| GET | `/api/posts` | Retrieve all posts |
+| GET | `/api/posts/:id` | Retrieve a post by ID |
+| PUT | `/api/posts/:id` | Update your own post (authentication required) |
+| DELETE | `/api/posts/:id` | Delete your own post (authentication required) |
+
+## Authentication
+
+Protected routes require a JWT token.
+
+After successfully logging in, copy the token from the response and add it to the Authorization section in Postman.
+
+Use:
+
+```text
+Bearer YOUR_JWT_TOKEN
+```
+
 ## Sample Product
 
 ```json
@@ -166,23 +163,27 @@ Base URL: `http://localhost:5000/api/products`
 }
 ```
 
-Send this JSON in the request body when creating a product using Postman. Use **Body → raw → JSON**.
+## Sample Post
+
+```json
+{
+  "title": "My First Post",
+  "content": "This is my first post using the Backend CRUD API."
+}
+```
 
 ## Testing
 
-All CRUD operations were tested using Postman.
+The API endpoints were tested using Postman, including:
+
+- Product CRUD operations
+- User registration and login
+- Password validation
+- JWT authentication
+- Protected post creation
+- Post retrieval, updating, and deletion
+- Authorization checks for post ownership
 
 ## Author
 
 Divyanshi Verma
-=======
-The API runs on `http://localhost:5000` if port 5000 is configured.
-
-## Testing
-
-Use Postman to send requests to the API and verify the responses.
-
-## Author
-
-Divyanshi Verma
->>>>>>> cae2f2b (Complete backend CRUD assignment)
